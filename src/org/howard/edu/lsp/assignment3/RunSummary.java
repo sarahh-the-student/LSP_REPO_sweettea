@@ -1,41 +1,57 @@
 package org.howard.edu.lsp.assignment3;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
 /**
- * Handles loading transformed product data into a new CSV file.
+ * Encapsulates the statistics of an ETL run, such as rows read and written.
  */
-public class CsvLoader {
+public class RunSummary {
+    private int rowsRead = 0;
+    private int rowsTransformed = 0;
+    private int headerSkipped = 0;
+    private int rowsWritten = 0;
+    private final String outputPath;
 
     /**
-     * Loads the transformed data into a new CSV file.
+     * Constructs a new RunSummary object.
      *
-     * @param products The list of transformed products to write.
-     * @param filePath The path to the output CSV file.
-     * @param summary  The RunSummary object to update with load statistics.
+     * @param outputPath The path where the final output file will be stored.
      */
-    public void load(List<Product> products, String filePath, RunSummary summary) {
-        System.out.println("Loading data to " + filePath + "...");
+    public RunSummary(String outputPath) {
+        this.outputPath = outputPath;
+    }
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-            // Write the header for the output file.
-            writer.println("ProductID,Name,Price,Category,PriceRange");
+    /** Increments the count of rows read from the source file. */
+    public void incrementRowsRead() {
+        this.rowsRead++;
+    }
 
-            for (Product product : products) {
-                writer.printf("%d,%s,%.2f,%s,%s%n",
-                              product.productID,
-                              product.name,
-                              product.price,
-                              product.category,
-                              product.priceRange);
-                summary.incrementRowsWritten();
-            }
+    /** Increments the count of header rows skipped. */
+    public void incrementHeaderSkipped() {
+        this.headerSkipped++;
+    }
 
-        } catch (IOException e) {
-            System.err.println("Error writing to output file: " + e.getMessage());
-        }
+    /**
+     * Sets the total number of rows transformed.
+     * @param count The number of rows transformed.
+     */
+    public void setRowsTransformed(int count) {
+        this.rowsTransformed = count;
+    }
+
+    /** Increments the count of rows written to the destination file. */
+    public void incrementRowsWritten() {
+        this.rowsWritten++;
+    }
+
+    /**
+     * Prints the formatted summary of the ETL process to the console.
+     */
+    public void print() {
+        System.out.println("\n--- Run Summary ---");
+        System.out.println("Rows read: " + rowsRead);
+        System.out.println("Rows transformed: " + rowsTransformed);
+        System.out.println("Header skipped: " + headerSkipped);
+        System.out.println("Rows written: " + rowsWritten);
+        System.out.println("Output path: " + outputPath);
+        System.out.println("-------------------\n");
     }
 }
