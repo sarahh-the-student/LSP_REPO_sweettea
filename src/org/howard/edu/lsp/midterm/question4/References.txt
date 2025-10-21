@@ -1,4 +1,4 @@
-# Reference: Design and Implementation for Question 4
+Reference: Design and Implementation for Question 4
 
 Date: October 20, 2025
 

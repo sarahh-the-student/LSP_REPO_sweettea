@@ -1,4 +1,4 @@
-# Reference: Analysis of Class Cohesion for Question 1
+Reference: Analysis of Class Cohesion for Question 1
 
 Conversation Transcript: Google Gemini
 
