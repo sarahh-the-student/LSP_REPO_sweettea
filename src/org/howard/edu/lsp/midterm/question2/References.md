@@ -1,0 +1,17 @@
+# Reference: Understanding Method Overloading
+
+Date: October 20, 2025
+
+Conversation Transcript with Google Gemini
+
+User:
+I am working on this question for an area calculator, but I need to know why I should use overloading, instead of separate methods. Please advise
+
+Gemini:
+That's a common point of confusion. While separate names are explicit, overloading is preferred here because it groups a family of related functions under a single, intuitive name. It treats "area" as the core concept. A developer using your class only needs to remember the verb 'area', and the compiler figures out the correct version to use based on the parameters (a radius, or a width and height). It's about creating a cleaner, more unified API for your class.
+
+User:
+So the main point is convenience and keeping the code clean.
+
+Gemini:
+Exactly. You've got the core idea. For your comment, you can phrase it like that. It improves the usability and readability of the code by establishing a clear and consistent way to perform a single action—calculating an area—across different contexts. It centralizes the concept rather than splintering it into many different method names.
