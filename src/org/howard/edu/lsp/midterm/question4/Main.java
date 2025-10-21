@@ -17,7 +17,7 @@ public class Main {
             System.out.println("Caught expected exception: " + e.getMessage());
         }
 
-        // === Heartbeat demonstration ===
+        // Heartbeat demonstration
         System.out.println("\n== Heartbeat timestamps BEFORE ==");
         for (Device d : Arrays.asList(lock, thermo, cam)) {
             System.out.println(d.getId() + " lastHeartbeat=" + d.getLastHeartbeatEpochSeconds());
@@ -32,14 +32,14 @@ public class Main {
             System.out.println(d.getId() + " lastHeartbeat=" + d.getLastHeartbeatEpochSeconds());
         }
 
-        // === Base-class polymorphism ===
+        // Base-class polymorphism
         List<Device> devices = Arrays.asList(lock, thermo, cam);
         System.out.println("\n== Initial status via Device ==");
         for (Device d : devices) {
             System.out.println(d.getStatus());
         }
 
-        // === Interface polymorphism: Networked ===
+        //  Interface polymorphism: Networked 
         System.out.println("\n== Connect all Networked ==");
         for (Device d : devices) {
             if (d instanceof Networked) {
@@ -47,7 +47,7 @@ public class Main {
             }
         }
 
-        // === Interface polymorphism: BatteryPowered ===
+        //  Interface polymorphism: BatteryPowered 
         System.out.println("\n== Battery report (BatteryPowered) ==");
         for (Device d : devices) {
             if (d instanceof BatteryPowered) {
@@ -56,7 +56,7 @@ public class Main {
             }
         }
 
-        // === Final status check ===
+        // Final Status
         System.out.println("\n== Updated status via Device ==");
         for (Device d : devices) {
             System.out.println(d.getStatus());
